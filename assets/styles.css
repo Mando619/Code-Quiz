@@ -1,0 +1,62 @@
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        
+    }
+
+
+
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+        /* styling the container for the question box. */
+
+    .container {
+        width: 800px;
+        max-width: 80%;
+        background-color: white;
+        padding: 10px 10px;
+        border-radius: 5px;
+        
+    }
+
+    .btn-grid {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .btn:hover {
+        border-color: turquoise;
+    }
+
+
+    .btn {
+        background-color: lightslategrey;
+        border: 5px solid;
+        border-radius: 5px;
+        padding: 5px 10px;
+        color: white;
+        
+    }
+
+    .start-btn, .next-bt {
+        padding: 10px 20px;
+        
+    }
+
+    .controls {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+    }
+     /* used to hide button when starting the quiz */
+    .hide {
+        display: none;
+    }
