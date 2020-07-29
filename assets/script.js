@@ -1,12 +1,12 @@
 
 var startButton = document.getElementById('start-btn');
-var nextButton = document.getElementById('next-btn');
 var questionContainerEl = document.getElementById('question-container');
 var questionElement = document.getElementById("question");
-var timerElement = document.getElementById("timer");
+var timerElement = document.getElementById("quiz-time");
+var finalScore = document.getElementById("final-score");
+var answerButton = document.getElementById("answer-buttons")
 //var counter = document.getElementById("counter");
 //var scoreCount = document.getElementById("scoreCount");
-//var answerButtons = document.getElementById("answer-buttons");
 var buttonA = document.getElementById('button-A');
 var buttonB = document.getElementById('button-B');
 var buttonC = document.getElementById('button-C');
@@ -40,11 +40,11 @@ var codeQuestions = [{
     correct: "A",       
 },
                    {
-     question:"What are the ",
-     choiceA: "What 3 languages are most common in front end development?",
-     choiceB: "JavaScript, Python, HTML",                   
+     question:"What What 3 languages are most common in front end development",
+     choiceA: "Java, HTML, javaScript",
+     choiceB: "javaScript, Python, HTML",                   
      choiceC: "HTML, Java, CSS",
-     choiceD: "Javascript, CSS, HTML",
+     choiceD: "javaScript, CSS, HTML",
      correct: "D",
 },
                    {
@@ -63,38 +63,44 @@ var finalQuestionIndex = codeQuestions.length;
 var currentQuestionIndex = 0;
 var timerInterval;
 var secondsLeft = 60;
-var scoreCount = 0;
-var correct;
+var scoreCount = 60;
+var correctAnswer;
+var highScore;
 
 
 
 
 
-startButton.addEventListener("click", startQuiz);
+startButton.addEventListener('click', startQuiz)
+answerButton.addEventListener('click', pickAnswer);
+
 
 
     function startQuiz() {
-        console.log('Started')
+        alert("You have 60 seconds to complete the quiz. 5 seconds will be deducted for every wrong answer. Good Luck!")
+        console.log("working")
         startButton.classList.add('hide')
         questionContainerEl.classList.remove('hide')
-       createQuestion()
+        createQuestion()
+        
+        
 
         timerInterval = setInterval(function() {
             secondsLeft --;
+            timerElement.textContent = "Seconds left" + secondsleft;
    
             if(secondsLeft === 0) {
             clearInterval(timerInterval);
-            showScore();
+            
            }
        }, 1000);
         
-        }
-    
-
-
+    }
+            
+        
         function createQuestion() {
             if (currentQuestionIndex === finalQuestionIndex) {
-            return showScore();
+            return;
      }
         
         var currentQuestion = codeQuestions[currentQuestionIndex];
@@ -106,18 +112,38 @@ startButton.addEventListener("click", startQuiz);
     };
 
 
-        function pickAnswer() {
+        
 
+        function timerCountdown() {
+
+        }
+
+
+
+            // function for answering correct, or false. with prompts alerting users result.
+
+        function pickAnswer(answer) {
+            correctAnswer = codeQuestions[currentQuestionIndex].correct;
+            if (answer === correctAnswer && currentQuestionIndex !== finalQuestionIndex){
+                scoreCount++;
+                alert("Correct Answer");
+                currentQuestionIndex++;
+                createQuestion()
+            }
+            else if (answer !== correctAnswer && currentQuestionIndex !== finalQuestionIndex) {
+                alert("Incorrect Answer");
+                currentQuestionIndex++;
+                createQuestion()   
+            }
+          //  else {
+               // scoreCount();
+                
+       // }
     }
+       // var clearButton = document.querySelector("#clear-storage");
+      // clearButton.addEventListener("click", function() {
+        //  localStorage.removeItem("highScore");
+       //
 
-
-
-
-  
-
-
-
-
-
-
-    
+startButton.addEventListener('click', startQuiz)
+answerButton.addEventListener('click', pickAnswer)
