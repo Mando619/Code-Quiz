@@ -73,7 +73,7 @@ var question;
 
 
 
-
+        // sart button  function. beginning quiz
     function startQuiz() {
         alert("You have 50 seconds to complete the quiz. 5 seconds will be deducted for every wrong answer. Good Luck!")
         console.log("working")
@@ -99,7 +99,7 @@ var question;
                    
                     
                 }
-        
+        // creating questions and answers
         function createQuestion() {
             if (currentQuestionIndex === finalQuestionIndex) {
                  endQuiz();
@@ -135,15 +135,7 @@ var question;
                     timeLeft -= 5;
                 }
             }
-          //  else {
-               // scoreCount();
-                
-       // }
-    
-       // var clearButton = document.querySelector("#clear-storage");
-      // clearButton.addEventListener("click", function() {
-        //  localStorage.removeItem("highScore");
-       //
+          
 
 startButton.addEventListener('click', startQuiz)
 answerButton.addEventListener('click', pickAnswer)

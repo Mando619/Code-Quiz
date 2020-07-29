@@ -28,7 +28,7 @@
         
     }
 
-
+    /* creating a style for timer and highscore */
     #timer, #highscore {
         text-align: center;
         border-color: white;
@@ -38,7 +38,7 @@
         font-size: 40px;
         
     }
-
+        /* gird created for multiple choice */
     .btn-grid {
         display: grid;
         grid-template-columns: repeat(4, auto);
@@ -73,7 +73,7 @@
        align-items: center;
 
     }
-     /* used to hide button when starting the quiz */
+     /* used to hide button when starting the quiz, and input form*/
     .hide {
         display: none;
     }
