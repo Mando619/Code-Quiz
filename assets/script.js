@@ -2,11 +2,11 @@
 var startButton = document.getElementById('start-btn');
 var questionContainerEl = document.getElementById('question-container');
 var questionElement = document.getElementById("question");
-var timerElement = document.getElementById("quiz-time");
+var timerElement = document.getElementById("timer");
 var finalScore = document.getElementById("final-score");
-var answerButton = document.getElementById("answer-buttons")
-//var counter = document.getElementById("counter");
-//var scoreCount = document.getElementById("scoreCount");
+var answerButton = document.getElementById("answer-buttons");
+var submitScoreButton = document.getElementById('submit-score');
+var highScore = document.getElementById('highscore')
 var buttonA = document.getElementById('button-A');
 var buttonB = document.getElementById('button-B');
 var buttonC = document.getElementById('button-C');
@@ -62,22 +62,20 @@ var codeQuestions = [{
 var finalQuestionIndex = codeQuestions.length;
 var currentQuestionIndex = 0;
 var timerInterval;
-var secondsLeft = 60;
-var scoreCount = 60;
+var timeLeft = 50;
 var correctAnswer;
-var highScore;
+var question;
 
 
 
 
 
-startButton.addEventListener('click', startQuiz)
-answerButton.addEventListener('click', pickAnswer);
+
 
 
 
     function startQuiz() {
-        alert("You have 60 seconds to complete the quiz. 5 seconds will be deducted for every wrong answer. Good Luck!")
+        alert("You have 50 seconds to complete the quiz. 5 seconds will be deducted for every wrong answer. Good Luck!")
         console.log("working")
         startButton.classList.add('hide')
         questionContainerEl.classList.remove('hide')
@@ -86,21 +84,25 @@ answerButton.addEventListener('click', pickAnswer);
         
 
         timerInterval = setInterval(function() {
-            secondsLeft --;
-            timerElement.textContent = "Seconds left" + secondsleft;
+            timeLeft --;
+            timerElement.innerHTML = timeLeft + "Time Left:";
    
-            if(secondsLeft === 0) {
-            clearInterval(timerInterval);
+            if(timeLeft === 0) {
+                  endQuiz();
             
            }
        }, 1000);
         
     }
-            
+                function endQuiz() {
+                    clearInterval(timerInterval)
+                   
+                    
+                }
         
         function createQuestion() {
             if (currentQuestionIndex === finalQuestionIndex) {
-            return;
+                 endQuiz();
      }
         
         var currentQuestion = codeQuestions[currentQuestionIndex];
@@ -112,13 +114,7 @@ answerButton.addEventListener('click', pickAnswer);
     };
 
 
-        
-
-        function timerCountdown() {
-
-        }
-
-
+            
 
             // function for answering correct, or false. with prompts alerting users result.
 
@@ -135,11 +131,15 @@ answerButton.addEventListener('click', pickAnswer);
                 currentQuestionIndex++;
                 createQuestion()   
             }
+                if (this.value !== codeQuestions[currentQuestionIndex].correct) {
+                    timeLeft -= 5;
+                }
+            }
           //  else {
                // scoreCount();
                 
        // }
-    }
+    
        // var clearButton = document.querySelector("#clear-storage");
       // clearButton.addEventListener("click", function() {
         //  localStorage.removeItem("highScore");

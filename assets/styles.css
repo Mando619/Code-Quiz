@@ -5,6 +5,7 @@
         
     }
 
+    
 
 
     body {
@@ -24,6 +25,17 @@
         background-color: white;
         padding: 10px 10px;
         border-radius: 5px;
+        
+    }
+
+
+    #timer, #highscore {
+        text-align: center;
+        border-color: white;
+        color: lightslategrey;
+        padding: 10px 20px;
+        width: 250PX;
+        font-size: 40px;
         
     }
 
